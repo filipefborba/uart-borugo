@@ -25,7 +25,21 @@ void sw_uart_write_string(due_sw_uart *uart, char* stringData) {
 // Funcao para calcular paridade impar
 // retorna paridade
 int calc_even_parity(char data) {
-  
+  int count = 0;
+  int a;
+
+  for (i = 0; i < 8; i++){
+    a = (data >> i) & 0x01;
+    count += a;
+  }
+
+  if (count % 2 == 0) {
+    return 1;
+  }
+
+  else {
+    return 0;
+  }
 }
 
 // Funcao para enviar um char (data 8 bits) via uart
@@ -42,22 +56,25 @@ void sw_uart_write_byte(due_sw_uart *uart, char data) {
   }
   
   // envia start bit
+  digitalWrite(uart -> pin_tx, LOW);
   _sw_uart_wait_T(uart);
   
   // envia payload
   for(int i = 0; i < uart->databits; i++) {
-    // ....
+    digitalWrite(uart -> pin_tx, (data >> i) & 0x01);
     _sw_uart_wait_T(uart);
   }
 
   // envia paridade, se existir
   if(uart->paritybit != SW_UART_NO_PARITY) {
-   // ...
+   digitalWrite(uart -> pin_tx, parity);
+   _sw_uart_wait_T(uart);
   }
   
   // envia stop bit, se existir
   for(int i = 0; i < uart->stopbits; i++) {
-       // ...
+    digitalWrite(uart -> pin_tx, HIGH);
+    _sw_uart_wait_T(uart);
   } 
 }
 
