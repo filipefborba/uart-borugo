@@ -26,7 +26,7 @@ int calc_even_parity(char data) {
   int count = 0;
   int a;
 
-  for (i = 0; i < 8; i++){
+  for (int i = 0; i < 8; i++){
     a = (data >> i) & 0x01;
     count += a;
   }
@@ -62,12 +62,12 @@ int sw_uart_receive_byte(due_sw_uart *uart, char* data) {
     }
   }
 
-  _sw_uart_wait_half_T(uart);
+  _sw_uart_wait_T(uart);
   
   // recebe dados
   for (int i = 0; i < 8; i++){
     nchar = nchar|(digitalRead(uart -> pin_rx) << i);
-    _sw_uart_wait_half_T(uart);
+    _sw_uart_wait_T(uart);
   }
 
   // recebe paridade
@@ -78,7 +78,7 @@ int sw_uart_receive_byte(due_sw_uart *uart, char* data) {
   int stopBit = digitalRead(uart -> pin_rx);
   
   // checa paridade
-  parity = calc_even_parity(nchar)
+  parity = calc_even_parity(nchar);
 
   if(parity != rx_parity) {
     return SW_UART_ERROR_PARITY;

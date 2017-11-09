@@ -3,11 +3,12 @@
 due_sw_uart uart;
 
 void setup() {
+  Serial.begin(9600);
   sw_uart_setup(&uart, 19, 18, 1, 8, SW_UART_EVEN_PARITY);
 }
 
 void loop() {
- test_write();
+ test_receive();
 }
 
 void test_write() {
