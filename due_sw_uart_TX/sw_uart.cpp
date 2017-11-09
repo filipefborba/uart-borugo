@@ -28,7 +28,7 @@ int calc_even_parity(char data) {
   int count = 0;
   int a;
 
-  for (i = 0; i < 8; i++){
+  for (int i = 0; i < 8; i++){
     a = (data >> i) & 0x01;
     count += a;
   }
