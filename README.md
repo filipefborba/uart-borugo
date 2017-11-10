@@ -9,7 +9,8 @@ e o stopbit. O startbit representa um sinal que informa o recebedor de que os bi
 
 # Forma de onda gerada pela implementação 
 
-
+Imagem da forma de onda gerada. É possível indentificar nesses sinal a recepção das letras C A M.
+<img src='./onda_uart.png'/>
 
 # Explicação do código 
 
