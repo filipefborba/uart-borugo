@@ -150,7 +150,9 @@ void test_receive() {
 }
 ```
 
-A seguinte função é responsável por realizar a recepção de uma string via UART. Mais explicações estão dentro do próprio código.
+### .cpp
+
+Assim como no TX, o seguinte código corresponde à lógica da comunicação UART. A seguinte função é responsável por realizar a recepção de uma string via UART. Mais explicações estão dentro do próprio código.
 
 ```cpp
 //Recebimento de dados do Serial
